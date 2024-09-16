@@ -150,10 +150,12 @@ void tud_vendor_rx_cb(uint8_t itf) {
     } while (len > 0);
 }
 
+#ifdef ENABLE_EMULATION
 void tud_vendor_tx_cb(uint8_t itf, uint32_t sent_bytes) {
     (void) sent_bytes;
     tud_vendor_n_write_flush(itf);
 }
+#endif
 
 int driver_write_ccid(uint8_t itf, const uint8_t *tx_buffer, uint16_t buffer_size) {
     if (*tx_buffer != 0x81) {
